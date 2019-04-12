@@ -18,12 +18,17 @@ export default ({
             type: String,
             required: true,
         },
+
+        [value]: {
+            type: Object,
+            required: true,
+        },
     },
 
     computed: {
         [model]: {
             get() {
-                return (this[formData] || {})[model];
+                return (this[formData] || {})[id];
             },
 
             set(value) {
