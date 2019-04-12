@@ -1,3 +1,8 @@
+[![npm version](https://badge.fury.io/js/%40netsells%2Fvue-form-data.svg)](https://badge.fury.io/js/%40netsells%2Fvue-form-data)
+[![Build Status](https://travis-ci.org/netsells/vue-form-data.svg?branch=master)](https://travis-ci.org/netsells/vue-form-data)
+[![codecov](https://codecov.io/gh/netsells/vue-form-data/branch/master/graph/badge.svg)](https://codecov.io/gh/netsells/vue-form-data)
+[![Mutation testing badge](https://badge.stryker-mutator.io/github.com/netsells/vue-form-data/master)](https://stryker-mutator.github.io)
+
 # Vue Form Data
 
 Mixins to handle form data in a form and input components for you. This package
