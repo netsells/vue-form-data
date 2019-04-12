@@ -65,12 +65,11 @@ describe('withFormInput', () => {
         });
 
         describe('computed', () => {
-            fit('sets the default computed property names', () => {
+            it('sets the default computed property names', () => {
                 const { computed } = withFormInput();
 
                 expect(computed).toEqual({
                     model: computedProperty,
-                    // formData: computedProperty,
                 });
             });
         });
@@ -93,19 +92,45 @@ describe('withFormInput', () => {
                 beforeEach(() => {
                     wrapper = mount(component, {
                         propsData: {
-                            value: { foo: 'bar', 'a': 1 },
+                            value: { foo: 'bar', a: 1 },
                             id: 'foo',
                         },
                     });
                 });
 
                 it('can render the model based on the components id', () => {
-                    expect(wrapper.find('.model').text()).toBe('foo');
+                    expect(wrapper.find('.model').text()).toBe('bar');
                 });
 
-                // it('can render the entire formData', () => {
-                //     expect(wrapper.find('.formData').text()).toBe(JSON.stringify({ foo: 'bar', 'a': 1 }));
-                // });
+                it('can render the entire formData', () => {
+                    expect(wrapper.find('.formData').text())
+                        .toBe(JSON.stringify({ foo: 'bar', 'a': 1 }, null, 2));
+                });
+
+                describe('when setting the model', () => {
+                    beforeEach(() => {
+                        wrapper.vm.model = 'changed';
+                    });
+
+                    it('emits the form data value', () => {
+                        expect(wrapper.emitted().input[0]).toEqual([{
+                            foo: 'changed',
+                            a: 1,
+                        }]);
+                    });
+                });
+
+                describe('when setting the formData', () => {
+                    beforeEach(() => {
+                        wrapper.vm.formData = { foo: 'bam' };
+                    });
+
+                    it('emits the form data value', () => {
+                        expect(wrapper.emitted().input[0]).toEqual([{
+                            foo: 'bam',
+                        }]);
+                    });
+                });
             });
         });
     });

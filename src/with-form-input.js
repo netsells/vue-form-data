@@ -1,4 +1,4 @@
-import withPropProxy, { getPropEmitName } from '@netsells/vue-with-prop-proxy';
+import withPropProxy from '@netsells/vue-with-prop-proxy';
 
 export default ({
     value = 'value',
@@ -6,13 +6,6 @@ export default ({
     model = 'model',
     id = 'id',
 } = {}) => ({
-    mixins: [
-        withPropProxy({
-            name: value,
-            via: formData,
-        }),
-    ],
-
     props: {
         [id]: {
             type: String,
@@ -25,17 +18,35 @@ export default ({
         },
     },
 
+    mixins: [
+        withPropProxy({
+            prop: value,
+            via: formData,
+        }),
+    ],
+
     computed: {
         [model]: {
+            /**
+             * Get the model value based on the formData object and this inputs
+             * ID
+             *
+             * @returns {any}
+             */
             get() {
-                return (this[formData] || {})[id];
+                return this[formData][this[id]];
             },
 
+            /**
+             * Set the model value by updating the formData object
+             *
+             * @param {any} value
+             */
             set(value) {
-                this.$emit(getPropEmitName(value), {
-                    ...(this[formData] || {}),
+                this[formData] = {
+                    ...this[formData],
                     [this[id]]: value,
-                });
+                };
             },
         },
     },
