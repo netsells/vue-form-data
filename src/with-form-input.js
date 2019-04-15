@@ -1,4 +1,3 @@
-import { getIn, setIn } from 'lodash-redux-immutability';
 import withPropProxy from '@netsells/vue-with-prop-proxy';
 
 export default ({
@@ -35,7 +34,7 @@ export default ({
              * @returns {any}
              */
             get() {
-                return getIn(this[formData], this[id]);
+                return this[formData][this[id]];
             },
 
             /**
@@ -44,7 +43,10 @@ export default ({
              * @param {any} value
              */
             set(value) {
-                this[formData] = setIn(this[formData], this[id], value);
+                this[formData] = {
+                    ...this[formData],
+                    [this[id]]: value,
+                };
             },
         },
     },
