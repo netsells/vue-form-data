@@ -1,4 +1,5 @@
 import withPropProxy from '@netsells/vue-with-prop-proxy';
+import { set, get } from 'lodash/fp';
 
 export default ({
     value = 'value',
@@ -34,7 +35,7 @@ export default ({
              * @returns {any}
              */
             get() {
-                return this[formData][this[id]];
+                return get(this[id])(this[formData]);
             },
 
             /**
@@ -43,10 +44,7 @@ export default ({
              * @param {any} value
              */
             set(value) {
-                this[formData] = {
-                    ...this[formData],
-                    [this[id]]: value,
-                };
+                this[formData] = set(this[id], value)(this[formData]);
             },
         },
     },

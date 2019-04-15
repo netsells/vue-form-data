@@ -1,6 +1,6 @@
 {
   "name": "@netsells/vue-form-data",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mixins to handle form data in a form and input components for you",
   "main": "dist/index.js",
   "scripts": {
@@ -60,6 +60,7 @@
     }
   },
   "dependencies": {
-    "@netsells/vue-with-prop-proxy": "^0.1.1"
+    "@netsells/vue-with-prop-proxy": "^0.1.1",
+    "lodash": "^4.17.11"
   }
 }
