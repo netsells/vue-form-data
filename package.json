@@ -1,6 +1,6 @@
 {
   "name": "@netsells/vue-form-data",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Mixins to handle form data in a form and input components for you",
   "main": "dist/index.js",
   "scripts": {
@@ -45,6 +45,9 @@
     "moduleNameMapper": {
       "^~/(.+)$": "<rootDir>/src/$1"
     },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash)"
+    ],
     "testEnvironment": "jsdom",
     "collectCoverage": true,
     "collectCoverageFrom": [
@@ -60,6 +63,7 @@
     }
   },
   "dependencies": {
-    "@netsells/vue-with-prop-proxy": "^0.1.1"
+    "@netsells/vue-with-prop-proxy": "^0.1.1",
+    "lodash-redux-immutability": "^0.0.3"
   }
 }
