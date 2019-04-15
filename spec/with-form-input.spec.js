@@ -86,9 +86,48 @@ describe('withFormInput', () => {
                 mixins: [withFormInput()],
             };
 
-            describe('when mounted', () => {
-                let wrapper;
+            let wrapper;
 
+            describe('when mounted with deep id', () => {
+                beforeEach(() => {
+                    wrapper = mount(component, {
+                        propsData: {
+                            value: {
+                                foo: {
+                                    bar: [
+                                        { test: 'wham' },
+                                    ],
+                                },
+                                a: 1,
+                            },
+                            id: 'foo.bar[0].test',
+                        },
+                    });
+                });
+
+                it('can render the model based on the components id', () => {
+                    expect(wrapper.find('.model').text()).toBe('wham');
+                });
+
+                describe('when setting the model', () => {
+                    beforeEach(() => {
+                        wrapper.vm.model = 'changed';
+                    });
+
+                    it('emits the form data value', () => {
+                        expect(wrapper.emitted().input[0]).toEqual([{
+                            foo: {
+                                bar: [
+                                    { test: 'changed' },
+                                ],
+                            },
+                            a: 1,
+                        }]);
+                    });
+                });
+            });
+
+            describe('when mounted', () => {
                 beforeEach(() => {
                     wrapper = mount(component, {
                         propsData: {
