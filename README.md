@@ -23,7 +23,7 @@ functions which return a mixin object, and can be passed options.
 This is a basic mixin which creates a formData state.
 
 ```javascript
-import { withFormData } from '@netsells/with-form-data';
+import { withFormData } from '@netsells/vue-form-data';
 
 {
     mixins: [
@@ -42,7 +42,7 @@ Options you can pass are:
 - `defaults` - change the default formData
 
 ```javascript
-import { withFormData } from '@netsells/with-form-data';
+import { withFormData } from '@netsells/vue-form-data';
 
 {
     mixins: [
@@ -81,7 +81,7 @@ child inputs.
 ```
 
 ```javascript
-import { withFormInput } from '@netsells/with-form-data';
+import { withFormInput } from '@netsells/vue-form-data';
 
 export default {
     mixins: [
